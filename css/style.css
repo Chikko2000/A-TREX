@@ -1,4 +1,6 @@
-/* Stile generale */
+/* ========================
+   Stile Generale
+======================== */
 body {
   font-family: Arial, sans-serif;
   color: #333;
@@ -6,23 +8,27 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  background-color: #0d1b2a;
 }
 
-/* Header e logo */
+/* Header e logo cliccabile */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #e0f0ff;
+  padding: 15px 10%;
+  background: rgba(0,0,0,0.6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-header .logo {
-  height: 70px;
+header a img.logo {
+  height: 60px;
   transition: transform 0.3s ease;
 }
 
-header .logo:hover {
+header a img.logo:hover {
   transform: scale(1.1) rotate(3deg);
 }
 
@@ -31,41 +37,153 @@ nav a {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
-  color: #333;
+  color: white;
   font-size: 1.1rem;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
-nav a.active {
-  color: #007acc;
-}
-
+nav a.active,
 nav a:hover {
-  color: #007acc;
+  color: #00b4d8;
   transform: scale(1.2) translateY(-3px);
 }
 
-/* Main content */
-main {
-  padding: 40px 20px;
+/* ========================
+   Slideshow Home
+======================== */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Centrare titoli e paragrafi */
-h1, h2, h3, h4, h5, h6, p {
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Testi slideshow */
+.slide-text {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%) translateY(20px);
   text-align: center;
+  text-shadow:0 0 20px rgba(0,0,0,0.7);
+  opacity:0;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Sezione intro */
+.slide-text.active {
+  opacity:1;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+.slide-text h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: #00b4d8;
+}
+
+.slide-text p {
+  font-size: 1.5rem;
+}
+
+/* Pallini indicatore */
+.dots {
+  position: absolute;
+  bottom: 20px;
+  left:50%;
+  transform: translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:50;
+}
+
+.dot {
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.5);
+  cursor:pointer;
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background:#00b4d8;
+}
+
+/* ========================
+   Quick Links sotto slideshow
+======================== */
+.quick-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 50px 10%;
+}
+
+.quick-card {
+  flex:1 1 250px;
+  background: rgba(0,0,0,0.5);
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  transition: transform 0.3s, background 0.3s;
+  cursor:pointer;
+}
+
+.quick-card:hover {
+  transform: translateY(-10px);
+  background: rgba(0,180,216,0.5);
+}
+
+.quick-card h2 {
+  color:#00b4d8;
+  margin-bottom:10px;
+}
+
+.quick-card p {
+  font-size:1rem;
+  line-height:1.4;
+}
+
+/* ========================
+   Main e titoli
+======================== */
+main {
+  padding: 40px 10%;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  text-align:center;
+}
+
+/* ========================
+   Sezione Intro e Team
+======================== */
 .intro {
   max-width: 800px;
   margin: 0 auto 50px auto;
   text-align: center;
 }
 
-/* Team */
 .team {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 50px auto;
   text-align: center;
 }
 
@@ -92,41 +210,17 @@ h1, h2, h3, h4, h5, h6, p {
 
 .bio h3 {
   margin-bottom: 10px;
+  color: #00b4d8;
 }
 
 .bio p {
   font-size: 0.95rem;
-  color: #555;
+  color: #ccc;
 }
 
-/* Pulsanti generici */
-button, .btn {
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #007acc;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-button:hover, .btn:hover {
-  transform: scale(1.1);
-  background-color: #005fa3;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  background-color: #e0f0ff;
-  padding: 20px;
-  margin-top: 50px;
-}
-
-/* -----------------------------
-   Hero Attrezzatura
-   ----------------------------- */
+/* ========================
+   Attrezzatura
+======================== */
 .hero-attrezzatura {
   position: relative;
   height: 90vh;
@@ -160,9 +254,6 @@ footer {
   animation: fadeInUp 1.5s ease;
 }
 
-/* -----------------------------
-   Sezione Attrezzatura
-   ----------------------------- */
 .attrezzatura-content {
   padding: 60px 10%;
   background-color: #111;
@@ -176,14 +267,12 @@ footer {
   letter-spacing: 1px;
 }
 
-/* Griglia prodotti animata */
 .attrezzatura-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
-/* Card prodotti */
 .attrezzatura-card {
   background: #1a1a1a;
   border-radius: 15px;
@@ -227,7 +316,20 @@ footer {
   transition: all 0.3s ease;
 }
 
-/* Animazioni */
+/* ========================
+   Footer
+======================== */
+footer {
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  color:white;
+  margin-top: 50px;
+}
+
+/* ========================
+   Animazioni generali
+======================== */
 @keyframes fadeInDown {
   from {opacity: 0; transform: translateY(-30px);}
   to {opacity: 1; transform: translateY(0);}
