@@ -6,7 +6,127 @@
   <title>A-TREX | Contatti</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+
+  <style>
+    body.contatti {
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: #00b4d8;
+    }
+
+    main {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      animation: fadeDown 1s ease-in-out;
+    }
+
+    .contatti-container {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 50px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      animation: fadeUp 1.3s ease-in-out;
+      max-width: 700px;
+    }
+
+    .contatti-container h2 {
+      color: #00b4d8;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .contatti-container p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: #00b4d8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mappa */
+    .mappa {
+      margin-top: 50px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      animation: fadeUp 1.6s ease-in-out;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      margin-top: 60px;
+    }
+
+    /* --- Animazioni --- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
+
 <body class="contatti">
   <header>
     <img src="img/logo.png" alt="Logo A-TREX" class="logo">
@@ -17,11 +137,34 @@
       <a href="contatti.html" class="active">Contatti</a>
     </nav>
   </header>
+
   <main>
     <h1>Contattaci</h1>
-    <p>Email: <a href="mailto:info@a-trex.it">info@a-trex.it</a></p>
-    <p>Telefono: +39 345 9836706</p>
+
+    <div class="contatti-container">
+      <h2>Informazioni generali</h2>
+      <p>Email: <a href="mailto:info@a-trex.it">info@a-trex.it</a></p>
+      <p>Telefono: <a href="tel:+393459836706">+39 345 9836706</a></p>
+
+      <hr style="margin:25px 0; border: 1px solid rgba(255,255,255,0.2);">
+
+      <h2>Contatti diretti</h2>
+      <p><strong>Enrico Paoletti</strong> — <a href="mailto:e.paoletti@a-trex.it">e.paoletti@a-trex.it</a></p>
+      <p><strong>Giuseppe Federico Paci</strong> — <a href="mailto:gf.paci@a-trex.it">gf.paci@a-trex.it</a></p>
+    </div>
+
+    <div class="mappa">
+      <a href="https://www.google.com/maps?q=Grottammare,+AP,+Italia" target="_blank">
+        <iframe
+          src="https://www.google.com/maps?q=Grottammare,+AP,+Italia&output=embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </a>
+    </div>
   </main>
+
   <footer>
     <p>© 2025 A-TREX</p>
   </footer>
