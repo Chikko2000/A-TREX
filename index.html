@@ -1,83 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A-TREX | Home</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <style>
-    /* --- Slideshow full screen --- */
-    .slideshow-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
+    body { margin:0; font-family:Arial,sans-serif; background:#0d1b2a; color:white; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:20px 10%; background: rgba(0,0,0,0.6); position:sticky; top:0; z-index:100; }
+    .logo { height:60px; }
+    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; transition:color 0.3s; }
+    nav a:hover, nav a.active { color:#00b4d8; }
 
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
+    /* --- Slideshow --- */
+    .slideshow-container { position:relative; width:100%; height:100vh; overflow:hidden; }
+    .slide { position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transform: scale(1.05); transition: opacity 1s ease, transform 1s ease; }
+    .slide.active { opacity:1; transform: scale(1); }
 
-    .slide.active {
-      opacity: 1;
+    /* --- Testi grandi sopra slideshow --- */
+    .slide-text { 
+      position:absolute; top:50%; left:50%; transform:translate(-50%, -50%) translateY(20px);
+      text-align:center; max-width:90%; text-shadow:0 0 20px rgba(0,0,0,0.7); 
+      opacity:0; transition: opacity 1s ease, transform 1s ease;
     }
+    .slide-text.active { opacity:1; transform:translate(-50%, -50%) translateY(0); }
+    .slide-text h1 { font-size:4rem; margin-bottom:10px; color:#00b4d8; }
+    .slide-text p { font-size:1.5rem; }
 
-    /* --- Testo sopra le immagini --- */
-    .slide-text {
-      position: absolute;
-      bottom: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
-      text-shadow: 0 0 15px rgba(0,0,0,0.7);
-      max-width: 90%;
-    }
+    /* --- Pallini indicatore --- */
+    .dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:50; }
+    .dot { width:15px; height:15px; border-radius:50%; background: rgba(255,255,255,0.5); cursor:pointer; transition: background 0.3s; }
+    .dot.active { background:#00b4d8; }
 
-    .slide-text h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+    footer { text-align:center; padding:20px; background: rgba(0,0,0,0.6); color:white; }
 
-    .slide-text p {
-      font-size: 1.2rem;
-    }
-
-    /* --- Bottone --- */
-    .slide-text a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-
-    .slide-text a:hover {
-      background: #0056b3;
-    }
-
-    /* --- Header e footer sopra slideshow --- */
-    header, footer {
-      position: relative;
-      z-index: 10;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: white;
-    }
+    /* --- Sezioni rapide sotto slideshow --- */
+    .quick-links { display:flex; justify-content:center; flex-wrap:wrap; gap:30px; padding:50px 10%; }
+    .quick-card { flex:1 1 250px; background: rgba(0,0,0,0.5); border-radius:15px; padding:20px; text-align:center; transition: transform 0.3s, background 0.3s; cursor:pointer; }
+    .quick-card:hover { transform: translateY(-10px); background: rgba(0,180,216,0.5); }
+    .quick-card h2 { color:#00b4d8; margin-bottom:10px; }
+    .quick-card p { font-size:1rem; line-height:1.4; }
   </style>
 </head>
 
@@ -95,26 +58,44 @@
   <main>
     <!-- SLIDESHOW -->
     <div class="slideshow-container">
-      <div class="slide active" style="background-image: url('img/slide1.jpeg');">
-        <div class="slide-text">
-          <h1>Benvenuto in A-TREX</h1>
-          <p>Strutture e palchi per eventi in tutta Italia</p>
-          <a href="attrezzatura.html">Scopri di più</a>
-        </div>
+      <div class="slide active" style="background-image: url('img/slide1.jpeg');"></div>
+      <div class="slide" style="background-image: url('img/slide2.jpeg');"></div>
+      <div class="slide" style="background-image: url('img/slide3.jpeg');"></div>
+
+      <div class="slide-text active">
+        <h1>Benvenuto in A-TREX</h1>
+        <p>Strutture e palchi per eventi in tutta Italia</p>
+      </div>
+      <div class="slide-text">
+        <h1>Qualità e Sicurezza</h1>
+        <p>Soluzioni affidabili per eventi professionali</p>
+      </div>
+      <div class="slide-text">
+        <h1>Esperienza e Passione</h1>
+        <p>Da anni al servizio del mondo dello spettacolo</p>
       </div>
 
-      <div class="slide" style="background-image: url('img/slide2.jpeg');">
-        <div class="slide-text">
-          <h1>Qualità e Sicurezza</h1>
-          <p>Soluzioni affidabili per eventi professionali</p>
-        </div>
+      <!-- Dots -->
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
       </div>
+    </div>
 
-      <div class="slide" style="background-image: url('img/slide3.jpeg');">
-        <div class="slide-text">
-          <h1>Esperienza e Passione</h1>
-          <p>Da anni al servizio del mondo dello spettacolo</p>
-        </div>
+    <!-- SEZIONI RAPIDE -->
+    <div class="quick-links">
+      <div class="quick-card" onclick="location.href='attrezzatura.html'">
+        <h2>Attrezzatura</h2>
+        <p>Palchi, pedane e impianti audio/luci per ogni tipo di evento.</p>
+      </div>
+      <div class="quick-card" onclick="location.href='chi-siamo.html'">
+        <h2>Chi Siamo</h2>
+        <p>Conosci i nostri fondatori e la passione dietro A-TREX.</p>
+      </div>
+      <div class="quick-card" onclick="location.href='contatti.html'">
+        <h2>Contatti</h2>
+        <p>Scrivici per info, preventivi o supporto. Siamo sempre disponibili!</p>
       </div>
     </div>
   </main>
@@ -124,22 +105,34 @@
   </footer>
 
   <script>
-    // --- Script per far scorrere le immagini ---
-    let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
+    const texts = document.querySelectorAll('.slide-text');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
 
-    function showNextSlide() {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
+    function showSlide(index = null) {
+      if(index !== null) current = index;
+      slides.forEach(s => s.classList.remove('active'));
+      texts.forEach(t => t.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+
+      slides[current].classList.add('active');
+      texts[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      current = (current + 1) % slides.length;
     }
 
-    setInterval(showNextSlide, 5000); // Cambia immagine ogni 5 secondi
+    let slideInterval = setInterval(showSlide, 5000);
 
-    // Scroll in alto quando si ricarica
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
+    // Clic sui pallini
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        showSlide(i);
+        slideInterval = setInterval(showSlide, 5000);
+      });
+    });
   </script>
 </body>
 </html>
