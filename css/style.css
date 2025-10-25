@@ -339,3 +339,18 @@ footer {
   from {opacity: 0; transform: translateY(30px);}
   to {opacity: 1; transform: translateY(0);}
 }
+
+/* ========================
+   Slider immagini (tutte le pagine)
+======================== */
+.slides img {
+  width: 100%;
+  height: 500px;       /* Altezza uniforme per tutti gli slider */
+  object-fit: cover;   /* Mantiene proporzioni corrette */
+  border-radius: 20px; /* Angoli arrotondati, look moderno */
+  transition: transform 0.4s ease;
+}
+
+.slides img:hover {
+  transform: scale(1.02);
+}
