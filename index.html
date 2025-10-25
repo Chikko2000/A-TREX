@@ -42,8 +42,19 @@
       transition: opacity 1s ease, transform 1s ease;
     }
     .slide-text.visible { opacity:1; transform:translate(-50%, -50%) translateY(0); }
-    .slide-text h1 { font-size:4rem; margin-bottom:10px; color:#00b4d8; animation: fadeDown 1s ease-in-out; }
-    .slide-text p { font-size:1.5rem; animation: fadeDown 1s ease-in-out; }
+
+    .slide-text h1 {
+      font-size: 4rem;
+      margin: 0; 
+      color: #00b4d8;
+      line-height: 1.2;
+      animation: fadeDown 1s ease-in-out;
+    }
+    .slide-text p {
+      font-size:1.5rem;
+      margin-top:10px;
+      animation: fadeDown 1s ease-in-out;
+    }
 
     /* --- Pallini indicatore --- */
     .dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:50; }
@@ -100,8 +111,9 @@
       <div class="slide" style="background-image: url('img/slide3.jpeg');"></div>
 
       <div class="slide-text visible">
-        <h1>Benvenuto in  A-TREX</h1>
-        <p>Pedane, Palchi e Impianti per Piccoli eventi </p>
+        <h1>Benvenuto in</h1>
+        <h1>A-TREX</h1>
+        <p>Pedane, Palchi e Impianti per Piccoli eventi</p>
       </div>
       <div class="slide-text">
         <h1>Qualità e Sicurezza</h1>
@@ -109,7 +121,7 @@
       </div>
       <div class="slide-text">
         <h1>Esperienza e Passione</h1>
-        <p>Esperti e Appasionati del Mondo dello Spettacolo</p>
+        <p>Esperti e Appassionati del Mondo dello Spettacolo</p>
       </div>
 
       <div class="dots">
@@ -154,7 +166,7 @@
       dots.forEach(d=>d.classList.remove('active'));
 
       slides[current].classList.add('active');
-      texts[current].classList.add('active');
+      texts[current].classList.add('active','visible'); // mostra testo corretto
       dots[current].classList.add('active');
 
       current = (current+1) % slides.length;
@@ -178,4 +190,3 @@
   </script>
 </body>
 </html>
-
