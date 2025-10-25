@@ -41,7 +41,7 @@
       opacity:0;
       transition: opacity 1s ease, transform 1s ease;
     }
-    .slide-text.active { opacity:1; transform:translate(-50%, -50%) translateY(0); }
+    .slide-text.visible { opacity:1; transform:translate(-50%, -50%) translateY(0); }
     .slide-text h1 { font-size:4rem; margin-bottom:10px; color:#00b4d8; animation: fadeDown 1s ease-in-out; }
     .slide-text p { font-size:1.5rem; animation: fadeDown 1s ease-in-out; }
 
@@ -99,7 +99,7 @@
       <div class="slide" style="background-image: url('img/slide2.jpeg');"></div>
       <div class="slide" style="background-image: url('img/slide3.jpeg');"></div>
 
-      <div class="slide-text active">
+      <div class="slide-text visible">
         <h1>Benvenuto in A-TREX</h1>
         <p>Strutture e palchi per eventi in tutta Italia</p>
       </div>
@@ -150,7 +150,7 @@
     function showSlide(index=null) {
       if(index!==null) current=index;
       slides.forEach(s=>s.classList.remove('active'));
-      texts.forEach(t=>t.classList.remove('active'));
+      texts.forEach(t=>t.classList.remove('active','visible')); // rimuove anche visible per ripetere anim
       dots.forEach(d=>d.classList.remove('active'));
 
       slides[current].classList.add('active');
@@ -167,14 +167,14 @@
       slideInterval = setInterval(showSlide,5000);
     }));
 
-    // IntersectionObserver per le quick-card
-    const cards = document.querySelectorAll('.quick-card');
+    // IntersectionObserver per slide-text e quick-card
+    const animElements = document.querySelectorAll('.slide-text, .quick-card');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if(entry.isIntersecting) entry.target.classList.add('visible');
       });
     });
-    cards.forEach(card => observer.observe(card));
+    animElements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
