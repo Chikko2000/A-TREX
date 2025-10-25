@@ -7,8 +7,24 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <style>
-    body { margin:0; font-family:Arial,sans-serif; background:#0d1b2a; color:white; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:20px 10%; background: rgba(0,0,0,0.6); position:sticky; top:0; z-index:100; }
+    body.home {
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#0d1b2a;
+      color:white;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 10%;
+      background: rgba(0,0,0,0.6);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
     .logo { height:60px; }
     nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; transition:color 0.3s; }
     nav a:hover, nav a.active { color:#00b4d8; }
@@ -20,13 +36,14 @@
 
     /* --- Testi grandi sopra slideshow --- */
     .slide-text { 
-      position:absolute; top:50%; left:50%; transform:translate(-50%, -50%) translateY(20px);
+      position:absolute; top:50%; left:50%; transform:translate(-50%, -50%) translateY(30px);
       text-align:center; max-width:90%; text-shadow:0 0 20px rgba(0,0,0,0.7); 
-      opacity:0; transition: opacity 1s ease, transform 1s ease;
+      opacity:0;
+      transition: opacity 1s ease, transform 1s ease;
     }
     .slide-text.active { opacity:1; transform:translate(-50%, -50%) translateY(0); }
-    .slide-text h1 { font-size:4rem; margin-bottom:10px; color:#00b4d8; }
-    .slide-text p { font-size:1.5rem; }
+    .slide-text h1 { font-size:4rem; margin-bottom:10px; color:#00b4d8; animation: fadeDown 1s ease-in-out; }
+    .slide-text p { font-size:1.5rem; animation: fadeDown 1s ease-in-out; }
 
     /* --- Pallini indicatore --- */
     .dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:50; }
@@ -37,10 +54,30 @@
 
     /* --- Sezioni rapide sotto slideshow --- */
     .quick-links { display:flex; justify-content:center; flex-wrap:wrap; gap:30px; padding:50px 10%; }
-    .quick-card { flex:1 1 250px; background: rgba(0,0,0,0.5); border-radius:15px; padding:20px; text-align:center; transition: transform 0.3s, background 0.3s; cursor:pointer; }
+    .quick-card {
+      flex:1 1 250px; 
+      background: rgba(0,0,0,0.5); 
+      border-radius:15px; 
+      padding:20px; 
+      text-align:center; 
+      transition: transform 0.3s, background 0.3s, opacity 0.6s, transform 0.6s;
+      opacity:0;
+      transform: translateY(30px);
+      cursor:pointer; 
+    }
+    .quick-card.visible { opacity:1; transform:translateY(0); }
     .quick-card:hover { transform: translateY(-10px); background: rgba(0,180,216,0.5); }
     .quick-card h2 { color:#00b4d8; margin-bottom:10px; }
     .quick-card p { font-size:1rem; line-height:1.4; }
+
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-30px); } to { opacity:1; transform:translateY(0); } }
+
+    @media(max-width:900px) {
+      .slide-text h1 { font-size:2.5rem; }
+      .slide-text p { font-size:1.2rem; }
+      .quick-links { flex-direction:column; align-items:center; }
+    }
   </style>
 </head>
 
@@ -75,7 +112,6 @@
         <p>Da anni al servizio del mondo dello spettacolo</p>
       </div>
 
-      <!-- Dots -->
       <div class="dots">
         <div class="dot active"></div>
         <div class="dot"></div>
@@ -105,35 +141,40 @@
   </footer>
 
   <script>
+    // Slideshow
     const slides = document.querySelectorAll('.slide');
     const texts = document.querySelectorAll('.slide-text');
     const dots = document.querySelectorAll('.dot');
     let current = 0;
 
-    function showSlide(index = null) {
-      if(index !== null) current = index;
-      slides.forEach(s => s.classList.remove('active'));
-      texts.forEach(t => t.classList.remove('active'));
-      dots.forEach(d => d.classList.remove('active'));
+    function showSlide(index=null) {
+      if(index!==null) current=index;
+      slides.forEach(s=>s.classList.remove('active'));
+      texts.forEach(t=>t.classList.remove('active'));
+      dots.forEach(d=>d.classList.remove('active'));
 
       slides[current].classList.add('active');
       texts[current].classList.add('active');
       dots[current].classList.add('active');
 
-      current = (current + 1) % slides.length;
+      current = (current+1) % slides.length;
     }
 
     let slideInterval = setInterval(showSlide, 5000);
+    dots.forEach((dot,i)=>dot.addEventListener('click', ()=>{
+      clearInterval(slideInterval);
+      showSlide(i);
+      slideInterval = setInterval(showSlide,5000);
+    }));
 
-    // Clic sui pallini
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        clearInterval(slideInterval);
-        showSlide(i);
-        slideInterval = setInterval(showSlide, 5000);
+    // IntersectionObserver per le quick-card
+    const cards = document.querySelectorAll('.quick-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
       });
     });
+    cards.forEach(card => observer.observe(card));
   </script>
 </body>
 </html>
-
