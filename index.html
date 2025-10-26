@@ -110,7 +110,7 @@
       <div class="slide" style="background-image: url('img/slide.jpeg');"></div>
       <div class="slide" style="background-image: url('img/slide.jpeg');"></div>
 
-      <div class="slide-text visible">
+      <div class="slide-text">
         <h1>Benvenuto in</h1>
         <h1>A-TREX</h1>
         <p>Pedane, Palchi e Impianti per Piccoli eventi</p>
@@ -159,35 +159,38 @@
     const dots = document.querySelectorAll('.dot');
     let current = 0;
 
-    function showSlide(index=null) {
-      if(index!==null) current=index;
-      slides.forEach(s=>s.classList.remove('active'));
-      texts.forEach(t=>t.classList.remove('active','visible')); // rimuove anche visible per ripetere anim
-      dots.forEach(d=>d.classList.remove('active'));
+    function showSlide(index = null) {
+      if (index !== null) current = index;
+
+      slides.forEach(s => s.classList.remove('active'));
+      texts.forEach(t => t.classList.remove('active','visible'));
+      dots.forEach(d => d.classList.remove('active'));
 
       slides[current].classList.add('active');
-      texts[current].classList.add('active','visible'); // mostra testo corretto
+      texts[current].classList.add('active','visible'); // solo testo della slide corrente
       dots[current].classList.add('active');
 
-      current = (current+1) % slides.length;
+      current = (current + 1) % slides.length;
     }
 
+    // Mostra subito la prima slide senza flash
+    showSlide(0);
+
     let slideInterval = setInterval(showSlide, 5000);
-    dots.forEach((dot,i)=>dot.addEventListener('click', ()=>{
+    dots.forEach((dot, i) => dot.addEventListener('click', () => {
       clearInterval(slideInterval);
       showSlide(i);
-      slideInterval = setInterval(showSlide,5000);
+      slideInterval = setInterval(showSlide, 5000);
     }));
 
-    // IntersectionObserver per slide-text e quick-card
-    const animElements = document.querySelectorAll('.slide-text, .quick-card');
+    // IntersectionObserver solo per quick-card
+    const cards = document.querySelectorAll('.quick-card');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     });
-    animElements.forEach(el => observer.observe(el));
+    cards.forEach(card => observer.observe(card));
   </script>
 </body>
 </html>
-
