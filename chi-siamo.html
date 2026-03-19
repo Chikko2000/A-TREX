@@ -47,13 +47,9 @@
       text-align: center;
     }
 
-    /* --- Sezione Storia --- */
+    /* --- Sezione Immagine --- */
     .storia {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 70vh;
-      padding: 50px 20px;
       background: url('img/slide.jpeg') no-repeat center center/cover;
       position: relative;
     }
@@ -66,62 +62,28 @@
       background: rgba(0,0,0,0.5);
     }
 
-    .storia-text {
-      position: relative;
+    /* --- Sezione Testo sotto --- */
+    .storia-sotto {
+      padding: 80px 20px;
+      background: #0d1b2a;
+      text-align: center;
+    }
+
+    .storia-content {
       max-width: 900px;
-      color: white;
-      font-size: 1.3rem;
-      line-height: 1.8;
+      margin: 0 auto;
       animation: fadeUp 1.5s ease-in-out;
     }
 
-    .storia-text h1 {
-      font-size: 3rem;
+    .storia-content h1 {
+      font-size: 2.5rem;
       margin-bottom: 20px;
       color: #00b4d8;
     }
 
-    /* --- Sezione Founders --- */
-    .founders {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding: 60px 20px;
-    }
-
-    .founder {
-      background: rgba(255,255,255,0.05);
-      padding: 25px 20px;
-      border-radius: 20px;
-      max-width: 300px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: fadeUp 1.6s ease-in-out;
-    }
-
-    .founder:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    }
-
-    .founder img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      margin-bottom: 15px;
-    }
-
-    .founder h3 {
-      margin: 10px 0 10px 0;
-      color: #00b4d8;
-    }
-
-    .founder p {
-      font-size: 1rem;
-      line-height: 1.6;
+    .storia-content p {
+      font-size: 1.2rem;
+      line-height: 1.8;
     }
 
     footer {
@@ -144,21 +106,12 @@
 
     /* --- Responsive --- */
     @media(max-width: 800px) {
-      .founders {
-        flex-direction: column;
-        align-items: center;
+      .storia-content h1 {
+        font-size: 2rem;
       }
 
-      .founder {
-        max-width: 90%;
-      }
-
-      .storia-text h1 {
-        font-size: 2.2rem;
-      }
-
-      .storia-text {
-        font-size: 1.1rem;
+      .storia-content p {
+        font-size: 1.05rem;
       }
     }
   </style>
@@ -177,38 +130,26 @@
   </header>
 
   <main>
-    <!-- Schermata Storia -->
-    <section class="storia">
-      <div class="storia-text">
+
+    <!-- Immagine sopra -->
+    <section class="storia"></section>
+
+    <!-- Testo sotto -->
+    <section class="storia-sotto">
+      <div class="storia-content">
         <h1>Dietro le Quinte</h1>
         <p>
           <strong>A-TREX nasce da due amici.</strong><br><br>
+
           Tutto è iniziato quasi per caso, acquistando alcune attrezzature per piccoli eventi.  
           Da qui è nato il nome <em>A-TREX</em> — semplicemente un gioco con la parola "Attrezzature".<br><br>
+
           Oggi offriamo soluzioni per eventi di piccole e medie dimensioni, 
           con passione e, soprattutto, cercando di divertirci in ogni progetto.
         </p>
       </div>
     </section>
 
-    <!-- Sezione Founders -->
-    <section class="founders">
-      <div class="founder">
-        <img src="img/enrico.jpeg" alt="Enrico">
-        <h3>Enrico</h3>
-        <p>
-          Founder di <strong>A-TREX</strong>. Lavoro nel mondo della tecnologia e sono appassionato di eventi, musica e logistica, dando sempre il massimo in ogni progetto.
-        </p>
-      </div>
-
-      <div class="founder">
-        <img src="img/giuseppe.jpeg" alt="Giuseppe">
-        <h3>Giuseppe</h3>
-        <p>
-          Founder di <strong>A-TREX</strong>. Musicista di professione, con esperienza nelle principali orchestre italiane, ho una grande passione per l’organizzazione di eventi, che porto ora in questa realtà.
-        </p>
-      </div>
-    </section>
   </main>
 
   <footer>
